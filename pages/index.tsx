@@ -10,6 +10,26 @@ import React, { useEffect, useState } from "react";
 import { getCollectionInfo, getCollectionNfts } from "./api/request";
 import userConfig from "@/userConfig.json";
 import { useRouter } from "next/router";
+import { useState } from "react"
+import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+import styles from "../styles/Home.module.css"
+
+const [user, setUser] = useState()
+
+export default function Home() {
+  async function login() {
+    const { user } = await mirrorworld.login()
+    setUser(user)
+  }
+
+  return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <button onClick={login}>Login to Mirror World</button>
+      </main>
+    </div>
+  )
+}
 
 const newList = new Array();
 const Home = () => {
